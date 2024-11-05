@@ -15,6 +15,9 @@ I am aware that infractions will be recorded and that appropriate
 import sys
 
 def usage():
-    """It shoes the usage message and exit"""
+    """Display usage message and exit"""
     print("Usage: assignment1.py YYYY-MM-DD NN")
     sys.exit(1)
+def leap_year(year):
+    """Return True if the given year is a leap year, False otherwise"""
+    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
