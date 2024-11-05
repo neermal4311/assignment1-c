@@ -38,3 +38,14 @@ def valid_date(date):
         return day <= mon_max(month, year)
     except ValueError:
         return False
+def day_of_week(date):
+    """This shoes the day of the week for the given date"""
+    day, month, year = map(int, date.split('/'))
+    if month < 3:
+        month += 12
+        year -= 1
+    k = year % 100
+    j = year // 100
+    h = (day + ((13 * (month + 1)) // 5) + k + (k // 4) + (j // 4) - (2 * j)) % 7
+    days = ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+    return days[h]
