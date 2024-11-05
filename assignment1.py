@@ -8,7 +8,7 @@ The python code in this file (assignment1.py) is original work written by
 except those provided by the course instructor, including any person, 
 textbook, or on-line resource. I have not shared this python script 
 with anyone or anything except for submission for grading.  
-I am aware that infractions will be recorded and that appropriate
+I am aware that infractions "will be recorded and that appropriate
  action will be taken in accordance with the Academic Honesty Policy.
 """
 
