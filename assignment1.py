@@ -22,10 +22,19 @@ def leap_year(year):
     """Return True if the given year is a leap year, False otherwise"""
     return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 def mon_max(month, year):
-    """Return the maximum number of days in the given month and year"""
+    """This Return the maximum number of days in the given month and year"""
     if month in [4, 6, 9, 11]:
         return 30
     elif month == 2:
         return 29 if leap_year(year) else 28
     else:
         return 31
+def valid_date(date):
+    """This check the given date is validor not"""
+    try:
+        day, month, year = map(int, date.split('/'))
+        if year < 1 or month < 1 or month > 12 or day < 1:
+            return False
+        return day <= mon_max(month, year)
+    except ValueError:
+        return False
