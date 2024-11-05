@@ -19,18 +19,20 @@ def usage():
     print("Usage: assignment1.py YYYY-MM-DD NN")
     sys.exit(1)
 def leap_year(year):
-    """Return True if the given year is a leap year, False otherwise"""
+    """This shows whether the given year is leap year or no"""
     return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
+
 def mon_max(month, year):
-    """This Return the maximum number of days in the given month and year"""
+    """ This gives the max number of days in the given month and year"""
     if month in [4, 6, 9, 11]:
         return 30
     elif month == 2:
         return 29 if leap_year(year) else 28
     else:
         return 31
+
 def valid_date(date):
-    """This check the given date is validor not"""
+    """Check if the given date is valid"""
     try:
         day, month, year = map(int, date.split('/'))
         if year < 1 or month < 1 or month > 12 or day < 1:
@@ -38,8 +40,9 @@ def valid_date(date):
         return day <= mon_max(month, year)
     except ValueError:
         return False
+
 def day_of_week(date):
-    """This shoes the day of the week for the given date"""
+    """Return the day of the week for the given date"""
     day, month, year = map(int, date.split('/'))
     if month < 3:
         month += 12
@@ -60,6 +63,7 @@ def after(date):
             month = 1
             year += 1
     return f"{day:02d}/{month:02d}/{year:04d}"
+
 def before(date):
     """Return the date before the given date"""
     day, month, year = map(int, date.split('/'))
@@ -71,9 +75,27 @@ def before(date):
             year -= 1
         day = mon_max(month, year)
     return f"{day:02d}/{month:02d}/{year:04d}"
+
 def day_iter(start_date, num_days):
-    """This shows the end date after iterating through the given number of days"""
+    """Return the end date after iterating through the given number of days"""
     date = start_date
     for _ in range(abs(num_days)):
         date = after(date) if num_days > 0 else before(date)
     return date
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        usage()
+    
+    start_date = sys.argv[1]
+    try:
+        num_days = int(sys.argv[2])
+    except ValueError:
+        usage()
+    
+    if not valid_date(start_date):
+        usage()
+    
+    end_date = day_iter(start_date, num_days)
+    day = day_of_week(end_date)
+    
+    print(f"The end date is {day}, {end_date}.")
