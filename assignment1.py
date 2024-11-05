@@ -71,3 +71,9 @@ def before(date):
             year -= 1
         day = mon_max(month, year)
     return f"{day:02d}/{month:02d}/{year:04d}"
+def day_iter(start_date, num_days):
+    """This shows the end date after iterating through the given number of days"""
+    date = start_date
+    for _ in range(abs(num_days)):
+        date = after(date) if num_days > 0 else before(date)
+    return date
