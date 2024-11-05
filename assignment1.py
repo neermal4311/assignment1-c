@@ -49,3 +49,25 @@ def day_of_week(date):
     h = (day + ((13 * (month + 1)) // 5) + k + (k // 4) + (j // 4) - (2 * j)) % 7
     days = ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri']
     return days[h]
+def after(date):
+    """Return the date after the given date"""
+    day, month, year = map(int, date.split('/'))
+    day += 1
+    if day > mon_max(month, year):
+        day = 1
+        month += 1
+        if month > 12:
+            month = 1
+            year += 1
+    return f"{day:02d}/{month:02d}/{year:04d}"
+def before(date):
+    """Return the date before the given date"""
+    day, month, year = map(int, date.split('/'))
+    day -= 1
+    if day < 1:
+        month -= 1
+        if month < 1:
+            month = 12
+            year -= 1
+        day = mon_max(month, year)
+    return f"{day:02d}/{month:02d}/{year:04d}"
